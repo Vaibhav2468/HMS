@@ -2,7 +2,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-
+import API_BASE_URL from "../config";
 const AppointmentForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -35,7 +35,7 @@ const AppointmentForm = () => {
     const fetchDoctors = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/v1/user/doctors",
+          `${API_BASE_URL}/api/v1/user/doctors`,
           { withCredentials: true }
         );
         setDoctors(data.doctors);
@@ -54,7 +54,7 @@ const AppointmentForm = () => {
       const selectedDoctor = doctors.find((doc) => doc._id === doctorId);
 
       const { data } = await axios.post(
-        "http://localhost:5000/api/v1/appointment/post",
+        `${API_BASE_URL}/api/v1/appointment/post`,
         {
           firstName,
           lastName,

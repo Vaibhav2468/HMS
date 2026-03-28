@@ -11,7 +11,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Context } from "../main";
 import { useNavigate } from "react-router-dom";
-
+import API_BASE_URL from "../config";
 const Sidebar = () => {
   const [show, setShow] = useState(false);
 
@@ -19,7 +19,7 @@ const Sidebar = () => {
 
   const handleLogout = async () => {
     await axios
-      .get("http://localhost:5000/api/v1/user/admin/logout", {
+      .get(`${API_BASE_URL}/api/v1/user/admin/logout`, {
         withCredentials: true,
       })
       .then((res) => {

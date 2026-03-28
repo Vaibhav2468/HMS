@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { GoCheckCircleFill } from "react-icons/go";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { FaSpinner } from 'react-icons/fa';
+import API_BASE_URL from "../config";
 import "../App.css";
 
 const Dashboard = () => {
@@ -16,7 +17,7 @@ const Dashboard = () => {
     const fetchAppointments = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/v1/appointment/getall",
+          `${API_BASE_URL}/api/v1/appointment/getall`,
           { withCredentials: true }
         );
         setAppointments(data.appointments);
@@ -33,7 +34,7 @@ const Dashboard = () => {
       setLoading(true); // Set loading to true
       
       const { data } = await axios.put(
-        `http://localhost:5000/api/v1/appointment/update/${appointmentId}`,
+        `${API_BASE_URL}/api/v1/appointment/update/${appointmentId}`,
         { status },
         { withCredentials: true }
       );

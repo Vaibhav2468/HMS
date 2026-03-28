@@ -13,7 +13,9 @@ import { ToastContainer} from 'react-toastify';
 import Navbar from './components/Navbar';
 import axios from "axios";
 import Footer from "./components/Footer";
+import API_BASE_URL from "./config";
 const App = () => {
+  
   const { isAuthenticated, setIsAuthenticated, setUser } =
   useContext(Context);
 // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -21,7 +23,7 @@ useEffect(() => {
   const fetchUser = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/v1/user/patient/me",
+        `${API_BASE_URL}/api/v1/user/patient/me`,
         {
           withCredentials: true,
         }

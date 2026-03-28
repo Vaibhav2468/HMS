@@ -1,21 +1,10 @@
-// import React from 'react'
 
-// const Messages = () => {
-//   return (
-//     <div>
-      
-//     </div>
-//   )
-// }
-
-// export default Messages;
-////////////////////////////////////
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Context } from "../main";
 import { Navigate } from "react-router-dom";
-
+import API_BASE_URL from "../config";
 const Messages = () => {
   const [messages, setMessages] = useState([]);
   const { isAuthenticated } = useContext(Context);
@@ -23,7 +12,7 @@ const Messages = () => {
     const fetchMessages = async () => {
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/v1/message/getall",
+          `${API_BASE_URL}/api/v1/message/getall`,
           { withCredentials: true }
         );
         setMessages(data.messages);

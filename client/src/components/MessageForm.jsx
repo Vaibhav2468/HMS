@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from "react-toastify";
-
-axios.defaults.baseURL = "http://localhost:5000/";
+import API_BASE_URL from "../config";
+axios.defaults.baseURL = API_BASE_URL;
 
 const MessageForm = () => {
   const [firstName, setFirstName] = useState("");

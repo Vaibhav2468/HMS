@@ -1,20 +1,10 @@
-// import React from 'react'
 
-// const AddNewAdmin = () => {
-//   return (
-//     <div>
-      
-//     </div>
-//   )
-// }
-
-// export default AddNewAdmin;
-////////////////////////////////////
 import React, { useContext, useState } from "react";
 import { Context } from "../main";
 import { Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import API_BASE_URL from "../config";
 
 const AddNewAdmin = () => {
   const { isAuthenticated, setIsAuthenticated } = useContext(Context);
@@ -35,7 +25,7 @@ const AddNewAdmin = () => {
     try {
       await axios
         .post(
-          "http://localhost:5000/api/v1/user/admin/addnew",
+          `${API_BASE_URL}/api/v1/user/admin/addnew`,
           { firstName, lastName, email, phone, AadhaarNumber, dob, gender, password },
           {
             withCredentials: true,

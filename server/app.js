@@ -31,10 +31,19 @@ config({path:"./config/config.env"})
 
 //////////////////
 
+// app.use(cors({
+//   origin: true,
+//   credentials: true,
+// }));
+
 app.use(cors({
-  origin: true,
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true); // local / Postman
+    callback(null, true); // allow all origins dynamically (simple solution)
+  },
   credentials: true,
 }));
+
 // app.use(cors({
 //   origin: [process.env.FRONTED_URL_ONE, process.env.FRONTED_URL_TWO],
 //   credentials: true,

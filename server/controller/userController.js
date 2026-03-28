@@ -124,12 +124,26 @@ export const login = catchAsyncErrors(async (req, res, next) => {
   });
 
   // Logout function for dashboard admin
+// export const logoutAdmin = catchAsyncErrors(async (req, res, next) => {
+//   res
+//     .status(201)
+//     .cookie("adminToken", "", {
+//       httpOnly: true,
+//       expires: new Date(Date.now()),
+//     })
+//     .json({
+//       success: true,
+//       message: "Admin Logged Out Successfully.",
+//     });
+// });
 export const logoutAdmin = catchAsyncErrors(async (req, res, next) => {
   res
     .status(201)
     .cookie("adminToken", "", {
       httpOnly: true,
-      expires: new Date(Date.now()),
+      expires: new Date(0), // cookie turant expire ho jaye
+      secure: process.env.NODE_ENV === "production", // deploy me HTTPS ke liye
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // local me lax, deploy me none for cross-site
     })
     .json({
       success: true,
@@ -138,12 +152,27 @@ export const logoutAdmin = catchAsyncErrors(async (req, res, next) => {
 });
 
 // Logout function for frontend patient
+// export const logoutPatient = catchAsyncErrors(async (req, res, next) => {
+//   res
+//     .status(201)
+//     .cookie("patientToken", "", {
+//       httpOnly: true,
+//       expires: new Date(Date.now()),
+//     })
+//     .json({
+//       success: true,
+//       message: "Patient Logged Out Successfully.",
+//     });
+// });
+
 export const logoutPatient = catchAsyncErrors(async (req, res, next) => {
   res
     .status(201)
     .cookie("patientToken", "", {
       httpOnly: true,
-      expires: new Date(Date.now()),
+      expires: new Date(0), // cookie turant expire ho jaye
+      secure: process.env.NODE_ENV === "production", // deploy me HTTPS ke liye
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // local me lax, deploy me none for cross-site
     })
     .json({
       success: true,
